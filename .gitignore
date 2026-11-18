@@ -236,3 +236,7 @@ airflow/plugins/
 # IDE
 .vscode/
 .idea/
+
+# OpenCode
+.opencode/
+AGENTS.md

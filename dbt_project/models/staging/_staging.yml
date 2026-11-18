@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: >
+      One row per order. Timestamps are cast from text to timestamp and
+      columns are renamed to clear English names. No filtering or joining.
+    columns:
+      - name: order_id
+        description: Primary key of the order.
+        data_tests: [unique, not_null]
+      - name: customer_id
+        description: Order-level customer key. Not unique across orders.
+        data_tests: [not_null]
+      - name: order_status
+        description: Current status of the order.
+        data_tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - delivered
+                  - shipped
+                  - canceled
+                  - unavailable
+                  - invoiced
+                  - processing
+                  - created
+                  - approved
+      - name: order_purchased_at
+        description: Timestamp when the customer placed the order.
+        data_tests: [not_null]
+      - name: order_approved_at
+        description: Timestamp of payment approval. Null for orders never approved.
+      - name: delivered_to_carrier_at
+        description: Timestamp when the order was handed to the carrier.
+      - name: delivered_to_customer_at
+        description: Timestamp when the order reached the customer.
+      - name: estimated_delivery_at
+        description: Delivery date promised to the customer.

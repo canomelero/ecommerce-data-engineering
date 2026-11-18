@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Olist tables loaded from CSV by ingestion/load_olist.py.
+    schema: raw
+    tables:
+      - name: orders
+        description: One row per order. All columns are text.
+      - name: customers
+        description: One row per order-level customer id.
+      - name: order_items
+        description: One row per item within an order.
+      - name: products
+        description: One row per product.
+      - name: order_payments
+        description: One row per payment entry of an order.
+      - name: sellers
+        description: One row per seller.
+      - name: order_reviews
+        description: One row per review/order pair.
